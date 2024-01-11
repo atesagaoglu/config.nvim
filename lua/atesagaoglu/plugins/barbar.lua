@@ -13,7 +13,7 @@ return{
         require('barbar').setup{
             animation = true,
             tabpages = true,
-            focus_on_close = 'right',
+            focus_on_close = 'left',
         }
         -- Mostly from github page of the plugin
         -- Move to previous/next
