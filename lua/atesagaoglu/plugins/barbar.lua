@@ -12,7 +12,8 @@ return{
 
         require('barbar').setup{
             animation = true,
-            tabpages = true,
+            tabpages = false,
+            no_name_title = "No Name",
             focus_on_close = 'left',
         }
         -- Mostly from github page of the plugin
@@ -39,6 +40,7 @@ return{
         map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
         -- Save and close buffer
         map('n', '<A-w>', '<Cmd>w<CR><bar><Cmd>BufferClose<CR>', opts)
+        map('n', '<A-q>', '<Cmd>close<CR>', opts)
         -- Magic buffer-picking mode
         map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
         -- Sort automatically by...
