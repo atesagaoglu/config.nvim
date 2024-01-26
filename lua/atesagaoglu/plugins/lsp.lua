@@ -147,6 +147,15 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
+        for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+            vim.fn.sign_define("DiagnosticSign" .. diag, {
+                text = "",
+                texthl = "DiagnosticSign" .. diag,
+                linehl = "",
+                numhl = "DiagnosticSign" .. diag,
+            })
+end
+
         -- LSP Servers --
         -- LUA --
         lspconfig['lua_ls'].setup({
@@ -192,14 +201,14 @@ return {
         on_attach = on_attach,
     })
 
-    lspconfig["marksman"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-    })
-
     require'lspconfig'.dartls.setup{
         capabilities = capabilities,
         on_attach = on_attach,
+    }
+
+    lspconfig.emmet_ls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
     }
 end
 }
