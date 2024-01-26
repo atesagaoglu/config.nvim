@@ -23,13 +23,13 @@ vim.opt.swapfile = false
 
 vim.opt.scrolloff = 8
 
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
-
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.signcolumn = "auto:1-9"
+
 vim.g.mapleader = " "
+vim.opt.mouse = ""
