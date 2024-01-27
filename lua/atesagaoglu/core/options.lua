@@ -32,4 +32,5 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.signcolumn = "auto:1-9"
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 vim.opt.mouse = ""
