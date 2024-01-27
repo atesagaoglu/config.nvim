@@ -10,9 +10,14 @@ return{
         vim.keymap.set("n", "<leader>a", mark.add_file, {desc = "Add file to Harpoon"})
         vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu,{desc = "Open Harpoon menu"})
 
-        vim.keymap.set("n", "<M-h>", function() ui.nav_file(1) end, {desc = "Go to Harpoon file 1"})
-        vim.keymap.set("n", "<M-j>", function() ui.nav_file(2) end, {desc = "Go to Harpoon file 2"})
-        vim.keymap.set("n", "<M-k>", function() ui.nav_file(3) end, {desc = "Go to Harpoon file 3"})
-        vim.keymap.set("n", "<M-l>", function() ui.nav_file(4) end, {desc = "Go to Harpoon file 4"})
+        vim.keymap.set("n", "<M-1>", function() ui.nav_file(1) end)
+        vim.keymap.set("n", "<M-2>", function() ui.nav_file(2) end)
+        vim.keymap.set("n", "<M-3>", function() ui.nav_file(3) end)
+        vim.keymap.set("n", "<M-4>", function() ui.nav_file(4) end)
+        vim.keymap.set("n", "<M-5>", function() ui.nav_file(5) end)
+        vim.keymap.set("n", "<M-6>", function() ui.nav_file(6) end)
+        vim.keymap.set("n", "<M-7>", function() ui.nav_file(7) end)
+        vim.keymap.set("n", "<M-8>", function() ui.nav_file(8) end)
+        vim.keymap.set("n", "<M-9>", function() ui.nav_file(9) end)
     end
 }
