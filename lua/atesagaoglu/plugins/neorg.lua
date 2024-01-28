@@ -9,19 +9,25 @@ return{
                 ["core.defaults"] = {}, -- Loads default behaviour
                 ["core.concealer"] = {
                     config = {
-                        icon_preset = "diamond",
-
+                        icon_preset = "basic",
                     }
                 }, -- Adds pretty icons to your documents
                 ["core.dirman"] = { -- Manages Neorg workspaces
-                config = {
-                    workspaces = {
-                        notes = "~/notes",
-                    },
-                    default_workspace = "notes"
+                    config = {
+                        workspaces = {
+                            main = '~/notes',
+                        },
+                        default_workspace = 'main'
+                    }
                 },
+                ["core.export"] = {},
+                ["core.export.markdown"] = {
+                    config = {
+                        extensions = "all",
+                    }
+                },
+                ["core.integrations.treesitter"] = {}
             },
-        },
-    }
+        }
 end,
 }
