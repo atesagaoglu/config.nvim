@@ -3,11 +3,12 @@ return{
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         local builtin = require('telescope.builtin')
-        -- ff: files fuzzy
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc = "Open Telescope"})
-        -- gf: files git
-        vim.keymap.set('n', '<leader>gf', builtin.git_files, {desc = "Open Telescope git only"})
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+
+        vim.keymap.set('n', '<leader>ff', builtin.find_files)
+        vim.keymap.set('n', '<leader>fv', builtin.git_files)
+        vim.keymap.set('n', '<leader>fg', builtin.live_grep)
+        vim.keymap.set('n', '<leader>fb', builtin.buffers)
+        vim.keymap.set('n', '<leader>fr', builtin.registers)
+        vim.keymap.set('n', '<leader>fa', builtin.builtin)
     end
 }
