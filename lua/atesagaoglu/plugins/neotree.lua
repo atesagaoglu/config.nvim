@@ -9,15 +9,15 @@ return{
     },
     config = function()
         vim.keymap.set("n", "<leader>tt", "<cmd>Neotree<CR>")
-        vim.keymap.set("n", "<leader>tf", "<cmd>Neotree current<CR>")
-        vim.keymap.set("n", "<leader>ts", "<cmd>Neotree left<CR>")
-        vim.keymap.set("n", "<leader>tr", "<cmd>Neotree buffers<CR>")
+        vim.keymap.set("n", "<leader>tf", "<cmd>Neotree float<CR>")
+        vim.keymap.set("n", "<leader>ts", "<cmd>Neotree right<CR>")
+        vim.keymap.set("n", "<leader>tb", "<cmd>Neotree buffers<CR>")
         vim.keymap.set("n", "<leader>tg", "<cmd>Neotree git_status<CR>")
         require("neo-tree").setup({
             close_if_last_window=true,
             popup_border_style = "rounded",
             window = {
-                position = "float",
+                position = "current",
                 mappings = {
                     ["E"] = "toggle_node",
                     ["W"] = "open",

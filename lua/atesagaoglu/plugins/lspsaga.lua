@@ -7,7 +7,8 @@ return{
                 open_link = "x",
             },
             code_action = {
-                show_server_name = true
+                show_server_name = true,
+                extend_gitsigns = true
             },
         })
 

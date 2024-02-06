@@ -3,6 +3,22 @@ return{
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         local builtin = require('telescope.builtin')
+        require('telescope').setup{
+            pickers = {
+                buffers = {
+                    initial_mode = 'normal',
+                    mappings = {
+                        n = {
+                            ['bd'] = require('telescope.actions').delete_buffer,
+                            ['dd'] = require('telescope.actions').delete_buffer,
+                        }
+                    },
+                },
+                registers = {
+                    initial_mode = 'normal'
+                }
+            }
+        }
 
         vim.keymap.set('n', '<leader>ff', builtin.find_files)
         vim.keymap.set('n', '<leader>fv', builtin.git_files)

@@ -15,9 +15,11 @@ return{
                 ["core.dirman"] = { -- Manages Neorg workspaces
                     config = {
                         workspaces = {
-                            main = '~/notes',
+                            personal = '~/notes/personal/',
+                            school = '~/notes/uni/',
+                            cs = '~/notes/cs/'
                         },
-                        default_workspace = 'main'
+                        default_workspace = 'personal'
                     }
                 },
                 ["core.export"] = {},
