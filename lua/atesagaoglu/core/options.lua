@@ -5,7 +5,7 @@ vim.opt.relativenumber = true
 -- Tab --
 vim.opt.wrap = false
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 0
 vim.opt.smartindent = true
 vim.opt.expandtab = true
 

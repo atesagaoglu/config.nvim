@@ -1,5 +1,6 @@
 vim.opt_local.conceallevel = 2
--- vim.opt_local.concealcursor = "n"
+vim.opt_local.concealcursor = "n"
+vim.opt_local.textwidth=120
 
 function Concursor()
    local val = vim.fn.execute('echo &concealcursor')

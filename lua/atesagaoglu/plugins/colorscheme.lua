@@ -1,15 +1,27 @@
+-- return {
+--     'rose-pine/neovim',
+--     as = 'rose-pine',
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         require('rose-pine').setup({
+--             variant = 'main',
+--             styles = {
+--                 italic = true
+--             },
+--         })
+--         vim.cmd([[colorscheme rose-pine]])
+--     end
+-- }
+
 return {
-    'rose-pine/neovim',
-    as = 'rose-pine',
+    "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-        require('rose-pine').setup({
-            variant = 'main',
-            styles = {
-                transparency = true,
-            }
+        require('onedark').setup({
+            ending_tildes = true
         })
-        vim.cmd([[colorscheme rose-pine]])
+        vim.cmd([[colorscheme onedark]])
     end
 }
