@@ -1,7 +1,7 @@
 return {
     "nvimtools/none-ls.nvim", -- configure formatters & linters
     lazy = true,
-    -- event = { "BufReadPre", "BufNewFile" }, -- to enable uncomment this
+    event = { "BufReadPre", "BufNewFile" }, -- to enable uncomment this
     dependencies = {
         "jay-babu/mason-null-ls.nvim",
     },
@@ -37,6 +37,8 @@ return {
                 -- formatting.prettier.with({
                 --     extra_filetypes = { "svelte" },
                 -- }), -- js/ts formatter
+                formatting.gofmt,
+                formatting.goimports,
                 diagnostics.eslint_d.with({ -- js/ts linter
                     condition = function(utils)
                         return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs

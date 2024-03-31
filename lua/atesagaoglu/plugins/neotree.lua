@@ -9,9 +9,9 @@ return{
     },
     config = function()
         vim.keymap.set("n", "<leader>tt", "<cmd>Neotree<CR>")
-        vim.keymap.set("n", "<leader>tf", "<cmd>Neotree float<CR>")
+        vim.keymap.set("n", "<leader>tf", "<cmd> Neotree float<CR>")
         vim.keymap.set("n", "<leader>ts", "<cmd>Neotree right<CR>")
-        vim.keymap.set("n", "<leader>tb", "<cmd>Neotree buffers<CR>")
+        vim.keymap.set("n", "<leader>tb", "<cmd>Neotree buffers float<CR>")
         vim.keymap.set("n", "<leader>tg", "<cmd>Neotree git_status<CR>")
         require("neo-tree").setup({
             close_if_last_window=true,

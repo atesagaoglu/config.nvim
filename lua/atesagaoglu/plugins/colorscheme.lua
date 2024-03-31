@@ -14,14 +14,24 @@
 --     end
 -- }
 
+-- return {
+--     "navarasu/onedark.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     config = function()
+--         require('onedark').setup({
+--             ending_tildes = true
+--         })
+--         vim.cmd([[colorscheme onedark]])
+--     end
+-- }
+
 return {
-    "navarasu/onedark.nvim",
+    "sainnhe/sonokai",
     lazy = false,
     priority = 1000,
-    config = function()
-        require('onedark').setup({
-            ending_tildes = true
-        })
-        vim.cmd([[colorscheme onedark]])
+    config = function ()
+        vim.g.sonokai_style = 'andromeda'
+        vim.cmd([[colorscheme sonokai]])
     end
 }
