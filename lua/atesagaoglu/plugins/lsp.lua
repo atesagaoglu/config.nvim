@@ -68,7 +68,6 @@ return {
 
 			mason_lspconfig.setup({
 				ensure_installed = {
-					"tsserver",
 					"html",
 					"cssls",
 					"lua_ls",
@@ -197,7 +196,7 @@ return {
 			})
 
 			-- TYPESCRIPT
-			lspconfig["tsserver"].setup({
+			lspconfig["ts_ls"].setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})

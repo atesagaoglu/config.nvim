@@ -40,4 +40,19 @@ return {
 		priority = 1000,
 		opts = {},
 	},
+	{
+		"nyoom-engineering/oxocarbon.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"ribru17/bamboo.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"ellisonleao/gruvbox.nvim",
+		lazy = false,
+		priority = 1000,
+	},
 }
