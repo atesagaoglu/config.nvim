@@ -280,8 +280,13 @@ return {
 				},
 			})
 
-			lspconfig.pyright.setup({
+			-- lspconfig.pyright.setup({
+			-- 	on_attach = on_attach,
+			-- })
+			--
+			lspconfig.jedi_language_server.setup({
 				on_attach = on_attach,
+				capabilities = capabilities,
 			})
 
 			lspconfig.clangd.setup({
