@@ -29,8 +29,8 @@ vim.opt.undofile = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- vim.opt.signcolumn = "auto:1-9"
-vim.opt.signcolumn = "yes"
+-- vim.o.signcolumn = "yes"
+vim.o.signcolumn = "yes:1"
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"

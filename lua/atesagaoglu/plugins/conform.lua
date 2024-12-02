@@ -6,6 +6,11 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
+				javascript = {
+					"prettier",
+					"prettierd",
+					stop_after_first = true,
+				},
 			},
 			format_on_save = {
 				lsp_fallback = true,

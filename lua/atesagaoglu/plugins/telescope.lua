@@ -8,6 +8,11 @@ return {
 			pickers = {
 				buffers = {
 					initial_mode = "normal",
+					mappings = {
+						n = {
+							["dd"] = require("telescope.actions").delete_buffer,
+						},
+					},
 				},
 				registers = {
 					initial_mode = "normal",

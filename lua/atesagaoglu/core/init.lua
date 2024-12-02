@@ -1,4 +1,3 @@
 require("atesagaoglu.core.options")
 require("atesagaoglu.core.maps")
-
--- asdasd
+-- require("atesagaoglu.core.autocmd")
