@@ -1,23 +1,21 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
 		dependencies = {
-			"hrsh7th/cmp-buffer",  -- source for text in buffer
-			"hrsh7th/cmp-path",    -- source for file system paths
-			"L3MON4D3/LuaSnip",    -- snippet engine
-			"saadparwaiz1/cmp_luasnip", -- for autocompletion
-			"rafamadriz/friendly-snippets", -- useful snippets
-			"onsails/lspkind.nvim", -- vs-code like pictograms
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
+			"onsails/lspkind.nvim",
 		},
 		config = function()
-			local cmp = require("cmp")
+			vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
 			local luasnip = require("luasnip")
-
+			local cmp = require("cmp")
 			local lspkind = require("lspkind")
 
-			-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
@@ -42,18 +40,56 @@ return {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" }, -- snippets
-					{ name = "buffer" }, -- text within current buffer
+					-- { name = "buffer" }, -- text within current buffer
 					{ name = "path" }, -- file system paths
-					{ name = 'vlime' }
+					{ name = "vlime" },
+					{ name = "nvlime" },
 				}),
 				-- configure lspkind for vs-code like pictograms in completion menu
 				formatting = {
 					format = lspkind.cmp_format({
 						maxwidth = 50,
 						ellipsis_char = "...",
+
+						before = function(entry, vim_item)
+							vim_item.menu = entry.source.name
+							return vim_item
+						end,
 					}),
 				},
 			})
+
+			local cmp_state_file = vim.fn.stdpath("data") .. "/cmp_state"
+
+			local function read_cmp_state()
+				local file = io.open(cmp_state_file, "r")
+				if file then
+					local state = file:read("*a")
+					file:close()
+					return state == "enabled"
+				end
+				return true
+			end
+
+			local function write_cmp_state(enabled)
+				local file = io.open(cmp_state_file, "w")
+				if file then
+					file:write(enabled and "enabled" or "disabled")
+					file:close()
+				end
+			end
+
+			local cmp_enabled = read_cmp_state()
+			cmp.setup({ enabled = cmp_enabled })
+
+			_G.toggle_cmp = function()
+				cmp_enabled = not cmp_enabled
+				cmp.setup({ enabled = cmp_enabled })
+				write_cmp_state(cmp_enabled)
+				print(cmp_enabled and "CMP Enabled" or "CMP Disabled")
+			end
+
+			vim.api.nvim_set_keymap("n", "<leader>ac", ":lua toggle_cmp()<CR>", { noremap = true, silent = true })
 		end,
 	},
 	{
@@ -154,8 +190,6 @@ return {
 				})
 			end
 
-			-- LSP Servers --
-			-- LUA --
 			require("lspconfig").lua_ls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
@@ -190,20 +224,66 @@ return {
 					return true
 				end,
 			})
-			-- HTML --
+
 			lspconfig["html"].setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
 
-			-- TYPESCRIPT
-			lspconfig["ts_ls"].setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = "/home/atesagaoglu/.local/share/fnm/node-versions/v22.13.0/installation/lib/node_modules/@vue/typescript-plugin/",
+							languages = { "javascript", "typescript", "vue" },
+						},
+					},
+				},
+				filetypes = {
+					"javascript",
+					"typescript",
+					"javascriptreact",
+					"typescriptreact",
+					"vue",
+				},
+				root_dir = require("lspconfig.util").root_pattern("tsconfig.json", "package.json"),
 			})
 
-			-- CSS --
+			lspconfig["volar"].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				root_dir = require("lspconfig").util.root_pattern(
+					"vue.config.js",
+					"vue.config.ts",
+					"nuxt.config.js",
+					"nuxt.config.ts",
+					"vite.config.js",
+					"vite.config.ts",
+					"package.json"
+				),
+				init_options = {
+					vue = {
+						hybridMode = true,
+					},
+				},
+			})
+
 			lspconfig["cssls"].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					css = {
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
+				},
+			})
+
+			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
@@ -213,14 +293,7 @@ return {
 				on_attach = on_attach,
 			})
 
-			require("lspconfig").dartls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
-
-			lspconfig.emmet_ls.setup({
-				-- on_attach = on_attach,
-				capabilities = capabilities,
+			lspconfig.emmet_language_server.setup({
 				filetypes = {
 					"css",
 					"eruby",
@@ -230,18 +303,28 @@ return {
 					"less",
 					"sass",
 					"scss",
-					"svelte",
 					"pug",
 					"typescriptreact",
-					"vue",
 				},
 				init_options = {
-					html = {
-						options = {
-							-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-							["bem.enabled"] = true,
-						},
-					},
+					---@type table<string, string>
+					includeLanguages = {},
+					--- @type string[]
+					excludeLanguages = {},
+					--- @type string[]
+					extensionsPath = {},
+					--- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+					preferences = {},
+					--- @type boolean Defaults to `true`
+					showAbbreviationSuggestions = true,
+					--- @type "always" | "never" Defaults to `"always"`
+					showExpandedAbbreviation = "always",
+					--- @type boolean Defaults to `false`
+					showSuggestionsAsSnippets = false,
+					--- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+					syntaxProfiles = {},
+					--- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+					variables = {},
 				},
 			})
 
@@ -281,10 +364,6 @@ return {
 				},
 			})
 
-			-- lspconfig.pyright.setup({
-			-- 	on_attach = on_attach,
-			-- })
-			--
 			lspconfig.jedi_language_server.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
@@ -293,6 +372,20 @@ return {
 			lspconfig.clangd.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
+			})
+
+			lspconfig.marksman.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.intelephense.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				init_options = {
+					globalStoragePath = "/tmp/intelephense",
+					steragePath = "/tmp/intelephense",
+				},
 			})
 		end,
 	},

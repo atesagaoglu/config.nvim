@@ -3,7 +3,6 @@ return {
 	lazy = false,
 	config = function()
 		require("themery").setup({
-			-- themes = { "onedark", "sonokai", "rose-pine", "tokyonight", "tokyonight-night", "oxocarbon" },
 			themes = {
 				{
 					name = "One Dark",
@@ -107,6 +106,35 @@ return {
 						vim.opt.background = "dark"
 					]],
 				},
+				{
+					name = "Solarized Dark",
+					colorscheme = "solarized",
+					before = [[
+						vim.opt.background = "dark"
+					]]
+				},
+				{
+					name = "Solarized Light",
+					colorscheme = "solarized",
+					before = [[
+						vim.opt.background = "light"
+					]]
+				},
+				{
+					name = "Zenburn",
+					colorscheme = "zenburn",
+					before = [[
+						vim.opt.background = "dark"
+					]]
+				},
+				{
+					name = "Kanagawa",
+					colorscheme = "kanagawa",
+					before = [[
+						vim.opt.background = "dark"
+					]]
+
+				}
 			},
 			livePreview = true,
 		})

@@ -14,6 +14,11 @@ return {
 			desc = "Buffer Diagnostics (Trouble)",
 		},
 		{
+			"<leader>xa",
+			"<cmd>Trouble<cr>",
+			desc = "Trouble all",
+		},
+		{
 			"<leader>cs",
 			"<cmd>Trouble symbols toggle focus=false<cr>",
 			desc = "Symbols (Trouble)",

@@ -35,3 +35,5 @@ vim.o.signcolumn = "yes:1"
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.opt.mouse = ""
+
+vim.opt.showtabline = 0

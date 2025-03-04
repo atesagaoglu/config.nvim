@@ -7,10 +7,24 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = {
-					"prettier",
 					"prettierd",
 					stop_after_first = true,
 				},
+				javascriptreact = {
+					"prettierd",
+					stop_after_first = true,
+				},
+				typescriptreact = {
+					"prettierd",
+					stop_after_first = true,
+				},
+				vue = {
+					"prettierd",
+					stop_after_first = true,
+				},
+				python = { "black" },
+				php = { "easy-coding-standard" },
+				go = { "goimports" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
