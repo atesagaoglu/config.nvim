@@ -131,6 +131,12 @@ return {
 			local on_attach = function(client, bufnr)
 				opts.buffer = bufnr
 
+				local disabled_formatters = { "clangd" } -- LSPs you want to disable formatting for
+
+				if vim.tbl_contains(disabled_formatters, client.name) then
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+				end
 				-- set keybinds
 				opts.desc = "Show LSP references"
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
@@ -375,6 +381,11 @@ return {
 			})
 
 			lspconfig.marksman.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			lspconfig.zls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
