@@ -20,3 +20,13 @@ vim.keymap.set("n", "<leader>yy", function()
 	vim.fn.setpos(".", current_pos)
 	vim.fn.winrestview(current_view)
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>el", function()
+	local current = vim.diagnostic.config().virtual_text
+	local new_state = not current
+	vim.diagnostic.config({
+		virtual_text = new_state,
+		underline = new_state,
+	})
+	vim.notify("Error Lens: " .. (new_state and "Enabled" or "Disabled"), vim.log.levels.INFO)
+end, { desc = "Toggle Error Lens" })

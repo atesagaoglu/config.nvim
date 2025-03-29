@@ -111,30 +111,36 @@ return {
 					colorscheme = "solarized",
 					before = [[
 						vim.opt.background = "dark"
-					]]
+					]],
 				},
 				{
 					name = "Solarized Light",
 					colorscheme = "solarized",
 					before = [[
 						vim.opt.background = "light"
-					]]
+					]],
 				},
 				{
 					name = "Zenburn",
 					colorscheme = "zenburn",
 					before = [[
 						vim.opt.background = "dark"
-					]]
+					]],
 				},
 				{
 					name = "Kanagawa",
 					colorscheme = "kanagawa",
 					before = [[
 						vim.opt.background = "dark"
-					]]
-
-				}
+					]],
+				},
+				{
+					name = "Gruber Darker",
+					colorscheme = "gruber-darker",
+					before = [[
+						vim.opt.background = "dark"
+					]],
+				},
 			},
 			livePreview = true,
 		})

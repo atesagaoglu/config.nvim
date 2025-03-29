@@ -39,6 +39,12 @@ return {
 					initial_mode = "normal",
 					wrap_results = true,
 				},
+				find_files = {
+					file_ignore_patterns = { "node%_modules/.*" },
+				},
+				live_grep = {
+					file_ignore_patterns = { "node%_modules/.*" },
+				},
 			},
 		})
 

@@ -3,29 +3,21 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local conform = require("conform")
+
+		local prettierd_fmts = { "javascript", "javascriptreact", "typescriptreact", "vue" }
+		local formatters = {
+			lua = { "stylua" },
+			python = { "black" },
+			php = { "easy-coding-standard" },
+			go = { "goimports" },
+		}
+
+		for _, ft in ipairs(prettierd_fmts) do
+			formatters[ft] = { "prettierd", stop_after_first = true }
+		end
+
 		conform.setup({
-			formatters_by_ft = {
-				lua = { "stylua" },
-				javascript = {
-					"prettierd",
-					stop_after_first = true,
-				},
-				javascriptreact = {
-					"prettierd",
-					stop_after_first = true,
-				},
-				typescriptreact = {
-					"prettierd",
-					stop_after_first = true,
-				},
-				vue = {
-					"prettierd",
-					stop_after_first = true,
-				},
-				python = { "black" },
-				php = { "easy-coding-standard" },
-				go = { "goimports" },
-			},
+			formatters_by_ft = formatters,
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,

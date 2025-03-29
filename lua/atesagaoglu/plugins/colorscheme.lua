@@ -56,19 +56,23 @@ return {
 		priority = 1000,
 	},
 	{
-		'maxmx03/solarized.nvim',
+		"maxmx03/solarized.nvim",
 		lazy = false,
 		priority = 1000,
 	},
 	{
 		"phha/zenburn.nvim",
 		lazy = false,
-		priority = 1000
+		priority = 1000,
 	},
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
-		priority = 1000
-	}
-
+		priority = 1000,
+	},
+	{
+		"blazkowolf/gruber-darker.nvim",
+		lazy = false,
+		priority = 1000,
+	},
 }

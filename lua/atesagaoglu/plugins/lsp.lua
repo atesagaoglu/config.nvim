@@ -131,12 +131,20 @@ return {
 			local on_attach = function(client, bufnr)
 				opts.buffer = bufnr
 
-				local disabled_formatters = { "clangd" } -- LSPs you want to disable formatting for
+				local disabled_formatters = {} -- LSPs you want to disable formatting for
 
 				if vim.tbl_contains(disabled_formatters, client.name) then
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end
+
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.format({ async = false })
+					end,
+				})
+
 				-- set keybinds
 				opts.desc = "Show LSP references"
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
@@ -176,6 +184,9 @@ return {
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+				opts.desc = "Format buffer"
+				keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
 			end
 
 			-- used to enable autocompletion (assign to every lsp server config)
@@ -219,8 +230,6 @@ return {
 										-- "${3rd}/luv/library"
 										-- "${3rd}/busted/library",
 									},
-									-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-									-- library = vim.api.nvim_get_runtime_file("", true)
 								},
 							},
 						})
@@ -243,7 +252,8 @@ return {
 					plugins = {
 						{
 							name = "@vue/typescript-plugin",
-							location = "/home/atesagaoglu/.local/share/fnm/node-versions/v22.13.0/installation/lib/node_modules/@vue/typescript-plugin/",
+							location =
+							"/home/atesagaoglu/.local/share/fnm/node-versions/v22.13.0/installation/lib/node_modules/@vue/typescript-plugin/",
 							languages = { "javascript", "typescript", "vue" },
 						},
 					},
@@ -378,6 +388,8 @@ return {
 			lspconfig.clangd.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
+
+				cmd = { "clangd", "--header-insertion=never" },
 			})
 
 			lspconfig.marksman.setup({
@@ -388,15 +400,6 @@ return {
 			lspconfig.zls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-			})
-
-			lspconfig.intelephense.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				init_options = {
-					globalStoragePath = "/tmp/intelephense",
-					steragePath = "/tmp/intelephense",
-				},
 			})
 		end,
 	},
