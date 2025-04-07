@@ -4,25 +4,27 @@ return {
 		-- use the latest release, via version = '*', if you also use the latest release for blink.cmp
 		version = "*",
 		lazy = true,
-		opts = {},
+		opts = {
+			impersonate_nvim_cmp = true,
+		},
 	},
 	{
 		"saghen/blink.cmp",
-		dependencies = { "rafamadriz/friendly-snippets", "L3MON4D3/LuaSnip" },
+		dependencies = { "rafamadriz/friendly-snippets", "L3MON4D3/LuaSnip", "PaterJason/cmp-conjure" },
 		version = "1.*",
 		opts = {
 			sources = {
-				-- TODO: Add vlime or Conjure via blink.compat
-				default = { "lsp", "path", "snippets", "buffer" },
-				-- providers = {
-				-- 	name = "vlime-cmp",
-				-- 	module = "blink.compat.source",
-				-- 	score_offset = -3,
-				-- },
+				default = { "lsp", "path", "snippets", "buffer", "conjure" },
+				providers = {
+					conjure = {
+						name = "conjure",
+						module = "blink.compat.source",
+					},
+				},
 			},
 			snippets = { preset = "luasnip" },
 			keymap = {
-				preset = "default",
+				preset = "none",
 
 				["<C-k>"] = { "select_prev", "fallback" },
 				["<C-j>"] = { "select_next", "fallback" },
@@ -49,6 +51,13 @@ return {
 				menu = {
 					draw = {
 						columns = { { "kind_icon", gap = 2 }, { "label", "label_description", gap = 1 }, { "kind" } },
+					},
+				},
+				accept = {
+					auto_brackets = {
+						kind_resolution = {
+							blocked_filetypes = { "fennel" },
+						},
 					},
 				},
 			},
