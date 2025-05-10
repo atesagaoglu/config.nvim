@@ -1,7 +1,7 @@
 return {
-	cmd = { "clangd", "--header-insertion=never" },
+	cmd = { "clangd", "--header-insertion=never", "--enable-config", "--fallback-style=none" },
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-	root_marks = {
+	root_markers = {
 		".clangd",
 		".clang-tidy",
 		".clang-format",

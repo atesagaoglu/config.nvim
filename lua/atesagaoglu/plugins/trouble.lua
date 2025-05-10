@@ -19,17 +19,22 @@ return {
 			desc = "Trouble all",
 		},
 		{
-			"<leader>cs",
+			"<leader>xs",
 			"<cmd>Trouble symbols toggle focus=false<cr>",
 			desc = "Symbols (Trouble)",
 		},
 		{
-			"<leader>cl",
+			"<leader>xr",
+			"<cmd>Trouble lsp_references toggle focus=false<cr>",
+			desc = "LPS references (Trouble)",
+		},
+		{
+			"<leader>xL",
 			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
 			desc = "LSP Definitions / references / ... (Trouble)",
 		},
 		{
-			"<leader>xL",
+			"<leader>xl",
 			"<cmd>Trouble loclist toggle<cr>",
 			desc = "Location List (Trouble)",
 		},

@@ -141,6 +141,53 @@ return {
 						vim.opt.background = "dark"
 					]],
 				},
+				{
+					name = "Borland",
+					colorscheme = "borland",
+					before = [[
+						vim.g.BorlandStyle = "classic"
+						vim.opt.background = "dark"
+					]],
+				},
+				{
+					name = "Zenbones",
+					colorscheme = "zenbones",
+					before = [[
+						vim.opt.background = "dark"
+					]],
+				},
+				{
+					name = "Zenbones White",
+					colorscheme = "zenbones",
+					before = [[
+						vim.opt.background = "light"
+					]],
+				},
+				{
+					name = "Deepwhite",
+					colorscheme = "deepwhite",
+					before = [[
+						vim.opt.background = "light"
+					]],
+				},
+				{
+					name = "Deepwhite Low Blue",
+					colorscheme = "deepwhite",
+					before = [[
+						vim.opt.background = "light"
+
+						require("deepwhite").setup({
+							low_blue_light = true
+						})
+					]],
+				},
+				{
+					name = "Everforest",
+					colorscheme = "everforest",
+					before = [[
+						vim.opt.background = "dark"
+					]],
+				},
 			},
 			livePreview = true,
 		})

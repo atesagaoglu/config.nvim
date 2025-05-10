@@ -2,6 +2,7 @@ local lsps = {
 	"luals",
 	"clangd",
 	"fennel-language-server",
+	"zls",
 }
 
 vim.lsp.enable(lsps)

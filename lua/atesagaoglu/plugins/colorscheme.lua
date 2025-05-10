@@ -75,4 +75,25 @@ return {
 		lazy = false,
 		priority = 1000,
 	},
+	{
+		"letorbi/vim-colors-modern-borland",
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"zenbones-theme/zenbones.nvim",
+		dependencies = "rktjmp/lush.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"Verf/deepwhite.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"neanias/everforest-nvim",
+		lazy = false,
+		priority = 1000,
+	},
 }

@@ -27,3 +27,31 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_set_keymap("n", "<Leader>sh", ":SwitchSourceHeader<CR>", { noremap = true, silent = true })
 	end,
 })
+
+-- Interactive input for oil-ssh protocol
+vim.api.nvim_create_user_command("OilSSH", function()
+	vim.fn.inputsave()
+	local ok, input = pcall(vim.fn.input, "host@server[:PORT]//[ABSPATH]: ")
+	vim.fn.inputrestore()
+
+	if not ok or input == nil or input == "" then
+		print("Cancelled")
+		return
+	end
+
+	local cmd = "e oil-ssh://" .. input
+	vim.cmd(cmd)
+end, {})
+vim.api.nvim_create_user_command("OilSSH", function()
+	vim.fn.inputsave()
+	local ok, input = pcall(vim.fn.input, "host@server[:PORT]//[ABSPATH]: ")
+	vim.fn.inputrestore()
+
+	if not ok or input == nil or input == "" then
+		print("Cancelled")
+		return
+	end
+
+	local cmd = "e oil-ssh://" .. input
+	vim.cmd(cmd)
+end, {})
