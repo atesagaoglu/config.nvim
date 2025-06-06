@@ -2,6 +2,7 @@ local lsps = {
 	"luals",
 	"clangd",
 	"fennel-language-server",
+	"jedi-language-server",
 	"zls",
 }
 

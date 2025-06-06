@@ -186,6 +186,43 @@ return {
 					colorscheme = "everforest",
 					before = [[
 						vim.opt.background = "dark"
+
+						require("everforest").setup({
+							background = "medium"
+						})
+					]],
+				},
+				{
+					name = "Everforest Soft",
+					colorscheme = "everforest",
+					before = [[
+						vim.opt.background = "dark"
+
+						require("everforest").setup({
+							background = "medium"
+						})
+					]],
+				},
+				{
+					name = "Everforest Light",
+					colorscheme = "everforest",
+					before = [[
+						vim.opt.background = "light"
+
+						require("everforest").setup({
+							background = "medium"
+						})
+					]],
+				},
+				{
+					name = "Everforest Soft Light",
+					colorscheme = "everforest",
+					before = [[
+						vim.opt.background = "light"
+
+						require("everforest").setup({
+							background = "medium"
+						})
 					]],
 				},
 			},

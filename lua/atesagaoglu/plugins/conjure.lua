@@ -1,6 +1,6 @@
 return {
 	"Olical/conjure",
-	ft = { "clojure", "fennel", "python" }, -- etc
+	ft = { "clojure", "fennel" },
 	lazy = true,
 	init = function()
 		-- Set configuration options here
@@ -8,6 +8,7 @@ return {
 		-- This is VERY helpful when reporting an issue with the project
 		-- vim.g["conjure#debug"] = true
 		vim.g["conjure#filetype#fennel"] = "conjure.client.fennel.stdio"
+		vim.g["conjure#filetypes"] = { "clojure", "fennel" }
 	end,
 
 	-- Optional cmp-conjure integration
